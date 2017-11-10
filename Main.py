@@ -25,8 +25,9 @@ def random_rgb_colour():
 
 
 # Game loop
-def gameLoop():
+def game_loop():
 
+    paddle_speed = 5
     speed = 4
     game_exit = False
     lead_x = WIDTH / 2
@@ -54,16 +55,16 @@ def gameLoop():
                 game_exit = True
 
             # Key events
-            if event.type == pygame.KEYDOWN and not event.type == pygame.KEYUP:
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
-                    paddle_1_y += -speed
+                    lead_paddle_y = -paddle_speed
 
-                elif event.key == pygame.K_s:
-                    paddle_1_y += speed
+                if event.key == pygame.K_s:
+                    lead_paddle_y = paddle_speed
 
         # Bounce
-        if lead_x == paddle_1_x:
-            print('SUCCESS')
+        if lead_x <= paddle_1_x:
+            lead_x_change = -speed
 
         # Game Over
         if lead_x >= WIDTH:
@@ -79,8 +80,7 @@ def gameLoop():
 
         lead_x += lead_x_change
         lead_y += lead_y_change
-        # paddle_1_x += lead_paddle_x
-        # paddle_1_x += lead_paddle_y
+        paddle_1_y += lead_paddle_y
 
         gameDisplay.fill(BLACK)
         pygame.draw.rect(gameDisplay, WHITE, [lead_x, lead_y, ball_size, ball_size])
@@ -93,4 +93,4 @@ def gameLoop():
     pygame.quit()
     quit()
 
-gameLoop()
+game_loop()
