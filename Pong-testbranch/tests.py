@@ -1,3 +1,3 @@
-import random
+import random, pygame
 
-print(random.randint(2, 1))
+print(pygame.font.get_fonts())
