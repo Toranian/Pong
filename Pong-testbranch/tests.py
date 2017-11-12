@@ -1,3 +1,3 @@
-import random, pygame
+import pickle
 
-print(pygame.font.get_fonts())
+pickle.dump(0, open("save.p", "wb"))
